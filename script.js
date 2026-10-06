@@ -1,62 +1,75 @@
-const games = [
-  {id:"snake",name:"Neon Snake",cat:"Arcade",players:"1.8k",thumb:"assets/snake.svg",popular:true},
-  {id:"2048",name:"2048",cat:"Puzzle",players:"2.6k",thumb:"assets/2048.svg",popular:true},
-  {id:"space",name:"Space Invaders",cat:"Arcade",players:"3.1k",thumb:"assets/space.svg",popular:true},
-  {id:"reaction",name:"Reaction Test",cat:"Casual",players:"1.2k",thumb:"assets/reaction.svg",popular:true},
-  {id:"mines",name:"Minesweeper",cat:"Puzzle",players:"1.1k",thumb:"assets/mines.svg"},
-  {id:"typing",name:"Typing Race",cat:"Casual",players:"870",thumb:"assets/typing.svg"},
-  {id:"aim",name:"Aim Trainer",cat:"Action",players:"940",thumb:"assets/aim.svg"},
-  {id:"memory",name:"Memory Match",cat:"Puzzle",players:"640",thumb:"assets/memory.svg"},
-  {id:"connect",name:"Connect 4",cat:"Strategy",players:"520",thumb:"assets/connect.svg"},
-  {id:"tictactoe",name:"Tic Tac Toe",cat:"Strategy",players:"1.4k",thumb:"assets/tictactoe.svg"},
-  {id:"brick",name:"Brick Breaker",cat:"Arcade",players:"760",thumb:"assets/brick.svg"},
-  {id:"clicker",name:"Clicker Factory",cat:"Casual",players:"1.0k",thumb:"assets/clicker.svg"},
-  {id:"doodle",name:"Doodle Jump",cat:"Platformer",players:"1.7k",thumb:"assets/doodle.svg"},
-  {id:"pool",name:"Mini Pool",cat:"Sports",players:"420",thumb:"assets/pool.svg"},
-  {id:"asteroids",name:"Asteroids",cat:"Action",players:"510",thumb:"assets/asteroids.svg"},
-  {id:"tower",name:"Tower Defense",cat:"Strategy",players:"390",thumb:"assets/tower.svg"}
+const games=[
+{id:"snake",name:"Snake",cat:"Arcade",players:"1.8k",thumb:"snake.svg",popular:true},
+{id:"paperio",name:"Paper.io",cat:"Arcade",players:"1.2k"},
+{id:"2048",name:"2048",cat:"Puzzle",players:"2.6k",thumb:"2048.svg",popular:true},
+{id:"tetris",name:"Tetris",cat:"Puzzle",players:"1.9k"},
+{id:"flappy",name:"Flappy Bird",cat:"Arcade",players:"1.7k"},
+{id:"mines",name:"Minesweeper",cat:"Puzzle",players:"1.1k",thumb:"mines.svg"},
+{id:"pacman",name:"Pac Man",cat:"Arcade",players:"1.6k"},
+{id:"solitaire",name:"Solitaire",cat:"Puzzle",players:"1.3k"},
+{id:"chess",name:"Chess",cat:"Strategy",players:"980"},
+{id:"checkers",name:"Checkers",cat:"Strategy",players:"740"},
+{id:"sudoku",name:"Sudoku",cat:"Puzzle",players:"690"},
+{id:"doodle",name:"Doodle Jump",cat:"Arcade",players:"1.7k",thumb:"doodle.svg"},
+{id:"crossy",name:"Crossy Road",cat:"Arcade",players:"1.1k"},
+{id:"connect",name:"Connect 4",cat:"Strategy",players:"520",thumb:"connect.svg"},
+{id:"battleship",name:"Battleship",cat:"Strategy",players:"430"},
+{id:"golf",name:"Mini Golf",cat:"Sports",players:"390"},
+{id:"bowling",name:"Bowling",cat:"Sports",players:"360"},
+{id:"pool",name:"Pool",cat:"Sports",players:"420",thumb:"pool.svg"},
+{id:"reaction",name:"Reaction Test",cat:"Random",players:"1.2k",thumb:"reaction.svg",popular:true},
+{id:"typing",name:"Typing Race",cat:"Random",players:"870",thumb:"typing.svg"},
+{id:"aim",name:"Aim Trainer",cat:"Random",players:"940",thumb:"aim.svg"},
+{id:"whack",name:"Whack a Mole",cat:"Arcade",players:"510"},
+{id:"pinball",name:"Pinball",cat:"Arcade",players:"450"},
+{id:"bubble",name:"Bubble Shooter",cat:"Arcade",players:"610"},
+{id:"colorswitch",name:"Color Switch",cat:"Arcade",players:"530"},
+{id:"tower",name:"Tower Defense",cat:"Strategy",players:"390",thumb:"tower.svg"},
+{id:"zombie",name:"Zombie Defense",cat:"Strategy",players:"410"},
+{id:"fishing",name:"Fishing",cat:"Random",players:"320"},
+{id:"pet",name:"Pet Simulator",cat:"Random",players:"580"},
+{id:"spacecolony",name:"Space Colony",cat:"Random",players:"290"},
+{id:"wordsearch",name:"Word Search",cat:"Puzzle",players:"480"},
+{id:"hangman",name:"Hangman",cat:"Puzzle",players:"370"},
+{id:"crossword",name:"Crossword",cat:"Puzzle",players:"330"},
+{id:"geography",name:"Geography Quiz",cat:"Random",players:"450"},
+{id:"flags",name:"Flag Quiz",cat:"Random",players:"410"},
+{id:"memory",name:"Memory Test",cat:"Random",players:"640",thumb:"memory.svg"},
+{id:"runner",name:"Endless Runner",cat:"Arcade",players:"720"},
+{id:"brick",name:"Brick Breaker",cat:"Arcade",players:"760",thumb:"brick.svg"},
+{id:"asteroids",name:"Asteroids",cat:"Arcade",players:"510",thumb:"asteroids.svg"},
+{id:"space",name:"Space Invaders",cat:"Arcade",players:"3.1k",thumb:"space.svg",popular:true},
+{id:"tictactoe",name:"Tic Tac Toe",cat:"Strategy",players:"1.4k",thumb:"tictactoe.svg"},
+{id:"clicker",name:"Clicker Factory",cat:"Random",players:"1.0k",thumb:"clicker.svg"}
 ];
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+function showPage(id){$$('.page').forEach(p=>p.classList.remove('active-page'));$('#'+id).classList.add('active-page');$$('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===id));window.scrollTo(0,0)}
+$$('.nav').forEach(n=>n.onclick=()=>showPage(n.dataset.page));
+$$('[data-go]').forEach(b=>b.onclick=()=>showPage(b.dataset.go));
 
-const cats=["All","Arcade","Casual","Puzzle","Action","Adventure","Simulation","Strategy","Sports","Platformer"];
-let selectedCat="All";
-const $=s=>document.querySelector(s);
-
-function renderCategories(){
-  $("#categories").innerHTML=cats.map(c=>`<button class="pill ${c===selectedCat?"active":""}" data-cat="${c}">${c}</button>`).join("");
-  document.querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{selectedCat=b.dataset.cat;renderCategories();renderGames()});
+function thumbFor(g){
+  const t=g.thumb || 'space.svg';
+  return `<div class="game-thumb"><img src="${t}" alt=""></div>`;
 }
-function card(g,big=false){
-  return `<article class="${big?"popular-card":"game-card"}" data-game="${g.id}">
-    <div class="thumb"><img src="${g.thumb}" alt=""><span class="tag">${g.cat}</span></div>
-    <div class="${big?"popular-info":"game-info"}"><h3>${g.name}</h3><div class="meta"><span class="dot"></span><span>${g.players} playing</span></div></div>
-  </article>`;
+function renderGames(list=games){
+  $('#gameGrid').innerHTML=list.map(g=>`<div class="game-card card" data-game="${g.id}"><span class="tag">${g.cat}</span>${thumbFor(g)}<h3>${g.name}</h3><p>Solo • no account needed</p><button>Play</button></div>`).join('');
+  $$('#gameGrid [data-game]').forEach(el=>el.onclick=()=>openGame(el.dataset.game));
 }
-function renderGames(){
-  const q=$("#gameSearch").value.trim().toLowerCase();
-  const filtered=games.filter(g=>(selectedCat==="All"||g.cat===selectedCat)&&g.name.toLowerCase().includes(q));
-  const popular=games.filter(g=>g.popular);
-  $("#popularGrid").innerHTML=popular.map(g=>card(g,true)).join("");
-  $("#gameGrid").innerHTML=filtered.map(g=>card(g)).join("");
-  $("#gameCount").textContent=`${filtered.length} games`;
-  document.querySelectorAll("[data-game]").forEach(el=>el.onclick=()=>openGame(el.dataset.game));
+function renderHome(){
+  $('#homeGames').innerHTML=games.slice(0,6).map(g=>`<div class="game-item"><span><img src="${g.thumb||'space.svg'}" alt=""> ${g.name}</span><button data-game="${g.id}">Play</button></div>`).join('');
+  $$('#homeGames [data-game]').forEach(el=>el.onclick=()=>openGame(el.dataset.game));
 }
-$("#gameSearch").addEventListener("input",renderGames);
-$("#popPrev").onclick=()=>$("#popularGrid").scrollBy({left:-330,behavior:"smooth"});
-$("#popNext").onclick=()=>$("#popularGrid").scrollBy({left:330,behavior:"smooth"});
-
 function openGame(id){
   const g=games.find(x=>x.id===id);
-  $("#modalCategory").textContent=g.cat.toUpperCase();
-  $("#modalTitle").textContent=g.name;
-  $("#gameModal").classList.remove("hidden");
-  mountGame(id);
+  $('#modalCategory').textContent=g.cat.toUpperCase(); $('#modalTitle').textContent=g.name;
+  $('#gameModal').classList.remove('hidden'); mountGame(id);
 }
-function closeGame(){ $("#gameModal").classList.add("hidden"); $("#gameMount").innerHTML=""; }
-$("#closeModal").onclick=closeGame;
-$("#gameModal").addEventListener("click",e=>{if(e.target.id==="gameModal")closeGame()});
+function closeGame(){ $('#gameModal').classList.add('hidden'); $('#gameMount').innerHTML=''; }
+$('#closeModal').onclick=closeGame;
+$('#gameModal').addEventListener('click',e=>{if(e.target.id==='gameModal')closeGame()});
 
 function mountGame(id){
-  const m=$("#gameMount");
+  const m=$('#gameMount');
   if(id==="snake") return snake(m);
   if(id==="2048") return game2048(m);
   if(id==="reaction") return reaction(m);
@@ -67,9 +80,9 @@ function mountGame(id){
   if(id==="tictactoe") return ttt(m);
   if(id==="brick") return brick(m);
   if(id==="clicker") return clicker(m);
-  m.innerHTML=`<div class="game-shell"><div class="game-panel big-message"><h3>${games.find(g=>g.id===id).name}</h3><p>This game card is live and the game slot is ready for the next Klyro engine module.</p><button class="game-btn" onclick="closeGame()">Back to games</button></div></div>`;
+  m.innerHTML=`<div class="game-shell"><div class="game-panel big-message"><h3>${gname(id)}</h3><p>This game is in the Klyro library and the game window is ready for its engine.</p><button class="game-btn" onclick="closeGame()">Back to games</button></div></div>`;
 }
-
+function gname(id){return games.find(g=>g.id===id)?.name||"Game";}
 function shell(m,html){m.innerHTML=`<div class="game-shell"><div class="game-panel">${html}</div></div>`}
 
 function snake(m){
@@ -153,15 +166,15 @@ function clicker(m){
  let coins=0,per=1,cost=25;$("#bigClick").onclick=()=>{coins+=per;$("#coins").textContent=coins};$("#upgrade").onclick=()=>{if(coins>=cost){coins-=cost;per++;cost=Math.ceil(cost*1.55);$("#per").textContent=per;$("#upgrade").textContent=`Upgrade +1 · ${cost} coins`;$("#coins").textContent=coins}}
 }
 
-function navigate(page){
- document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
- if(page==="games"){$("#gamesPage").classList.add("active");$("#simplePage").classList.remove("active");return}
- $("#gamesPage").classList.remove("active");$("#simplePage").classList.add("active");
- const data={chats:["SOCIAL","Chats","Real-time messaging gets connected when the Klyro backend is added."],ai:["KLYRO AI","AI Chat","This is where the real AI API will live. The current games build keeps the page separate so the frontend stays fast."],friends:["SOCIAL","Friends","Profiles, friend requests and presence will connect to the account system."],settings:["CUSTOMIZE","Settings","Accent color, stars, planets, glow and background controls can live here."]}[page];
- $("#simpleEyebrow").textContent=data[0];$("#simpleTitle").textContent=data[1];$("#simpleText").textContent=data[2];
-}
-document.querySelectorAll("[data-page]").forEach(b=>b.onclick=e=>{e.preventDefault();navigate(b.dataset.page)});
-renderCategories();renderGames();
 
-const savedAccent=localStorage.getItem("klyroAccent");
-if(savedAccent)document.documentElement.style.setProperty("--accent",savedAccent);
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+$('#category').onchange=e=>renderGames(e.target.value==='All games'?games:games.filter(g=>g.cat===e.target.value));
+$('#search').oninput=e=>{const q=e.target.value.toLowerCase();const found=games.filter(g=>g.name.toLowerCase().includes(q));if(q){showPage('games');renderGames(found)}else renderGames()};
+$$('.swatches button').forEach(b=>b.onclick=()=>{document.documentElement.style.setProperty('--accent',b.dataset.color);localStorage.setItem('klyroAccent',b.dataset.color)});
+const saved=localStorage.getItem('klyroAccent');if(saved)document.documentElement.style.setProperty('--accent',saved);
+$('#spaceToggle').onchange=e=>$('.space').style.opacity=e.target.checked?'1':'0';
+$('#starsToggle').onchange=e=>$('.space').style.setProperty('--stars',e.target.checked?'1':'0');
+$('#planetOpacity').oninput=e=>$('.planet,.planet-ring').style.opacity=e.target.value/100;
+$('#chatForm').onsubmit=e=>{e.preventDefault();const i=$('#chatInput');if(!i.value.trim())return;$('#messages').insertAdjacentHTML('beforeend',`<div class="msg me">${escapeHtml(i.value)}</div>`);i.value='';document.querySelector('.messages').scrollTop=99999};
+$('#aiForm').onsubmit=e=>{e.preventDefault();const i=$('#aiInput');if(!i.value.trim())return;const q=i.value;$('#aiMessages').insertAdjacentHTML('beforeend',`<div class="ai-msg"><b>You</b><p>${escapeHtml(q)}</p></div><div class="ai-msg"><b>Klyro AI</b><p>I'm just a local demo right now 😭 but the real AI can be connected to an API later.</p></div>`);i.value=''};
+renderGames();renderHome();

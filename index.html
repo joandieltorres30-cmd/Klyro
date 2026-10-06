@@ -1,95 +1,123 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>Klyro Games</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Klyro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="space-bg" aria-hidden="true"></div>
-
-  <header class="topbar">
-    <a class="brand" href="#" data-page="games">
-      <span class="brand-mark"><i></i><i></i><i></i><i></i></span>
-      <span>Klyro</span>
-    </a>
+  <div class="space"></div>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-dot"></span>Klyro</div>
     <nav>
-      <button class="nav-btn active" data-page="games">Games</button>
-      <button class="nav-btn" data-page="chats">Chats</button>
-      <button class="nav-btn" data-page="ai">AI</button>
-      <button class="nav-btn" data-page="friends">Friends</button>
-      <button class="nav-btn" data-page="settings">Settings</button>
+      <button class="nav active" data-page="home">⌂ <span>Home</span></button>
+      <button class="nav" data-page="games">◈ <span>Games</span></button>
+      <button class="nav" data-page="chat">◌ <span>Chats</span></button>
+      <button class="nav" data-page="ai">✦ <span>AI Chat</span></button>
+      <button class="nav" data-page="friends">♧ <span>Friends</span></button>
+      <button class="nav" data-page="settings">⚙ <span>Settings</span></button>
+      <button class="nav" data-page="admin">◆ <span>Admin</span></button>
     </nav>
-    <button class="profile-dot" aria-label="Profile"></button>
-  </header>
+    <div class="side-bottom">
+      <div class="profile-mini"><div class="avatar">J</div><div><b>Joandiel</b><small>online</small></div></div>
+    </div>
+  </aside>
 
   <main>
-    <section id="gamesPage" class="page active">
-      <div class="hero">
+    <header>
+      <div class="search"><span>⌕</span><input id="search" placeholder="Search games, friends, rooms..."></div>
+      <div class="header-actions"><button>♧</button><button>◔</button><div class="avatar">J</div></div>
+    </header>
+
+    <section id="home" class="page active-page">
+      <div class="hero card">
         <div>
-          <p class="eyebrow">KLYRO ARCADE</p>
-          <h1>Play something.</h1>
-          <p class="hero-copy">Quick games, no downloads, straight from your browser.</p>
+          <p class="eyebrow">WELCOME BACK</p>
+          <h1>Yo Joandiel <span>✦</span></h1>
+          <p>Play something. Chat with friends. Or just chill.</p>
+          <div class="hero-buttons"><button class="primary" data-go="games">Browse games</button><button class="ghost" data-go="ai">Ask Klyro AI</button></div>
         </div>
-        <div class="hero-orb"><span></span></div>
+        <div class="orbit"><div class="planet"></div><div class="planet-ring"></div></div>
       </div>
-
-      <div class="search-wrap">
-        <span class="search-icon"></span>
-        <input id="gameSearch" type="search" placeholder="Search games here..." autocomplete="off">
+      <div class="section-title"><h2>Quick access</h2></div>
+      <div class="quick-grid">
+        <button class="quick card" data-go="games"><b>🎮 Games</b><span>Solo games and arcade stuff</span></button>
+        <button class="quick card" data-go="ai"><b>✦ AI Chat</b><span>Ask questions or just yap</span></button>
+        <button class="quick card" data-go="chat"><b>◌ Chats</b><span>Talk with your friends</span></button>
+        <button class="quick card" data-go="friends"><b>♧ Friends</b><span>See who's online</span></button>
       </div>
-
-      <div id="categories" class="pills"></div>
-
-      <section class="section">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">TRENDING NOW</p>
-            <h2>Most Popular</h2>
-          </div>
-          <div class="scroll-controls">
-            <button id="popPrev" aria-label="Previous">‹</button>
-            <button id="popNext" aria-label="Next">›</button>
+      <div class="columns">
+        <div class="card panel">
+          <div class="panel-head"><h2>Popular right now</h2><button data-go="games">See all</button></div>
+          <div class="game-list" id="homeGames"></div>
+        </div>
+        <div class="card panel">
+          <div class="panel-head"><h2>Online now</h2><span class="live">● 12 online</span></div>
+          <div class="people">
+            <div><i></i><b>Jayden</b><small>Playing Snake</small></div>
+            <div><i></i><b>Mia</b><small>In General chat</small></div>
+            <div><i></i><b>Alex</b><small>Playing 2048</small></div>
+            <div><i></i><b>Chris</b><small>Browsing games</small></div>
           </div>
         </div>
-        <div id="popularGrid" class="popular-grid"></div>
-      </section>
-
-      <section class="section all-section">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">THE LIBRARY</p>
-            <h2>All Games</h2>
-          </div>
-          <span id="gameCount" class="count"></span>
-        </div>
-        <div id="gameGrid" class="game-grid"></div>
-      </section>
+      </div>
     </section>
 
-    <section id="simplePage" class="page">
-      <div class="empty-page">
-        <p class="eyebrow" id="simpleEyebrow">KLYRO</p>
-        <h1 id="simpleTitle">Coming up</h1>
-        <p id="simpleText">This page is ready for the next backend build.</p>
+    <section id="games" class="page">
+      <div class="page-head"><div><p class="eyebrow">GAME HUB</p><h1>Pick something</h1></div><select id="category"><option>All games</option><option>Arcade</option><option>Puzzle</option><option>Strategy</option><option>Sports</option><option>Random</option></select></div>
+      <div class="game-grid" id="gameGrid"></div>
+    </section>
+
+    <section id="chat" class="page">
+      <div class="page-head"><div><p class="eyebrow">SOCIAL</p><h1>Chats</h1></div><button class="primary">+ New chat</button></div>
+      <div class="chat-layout">
+        <div class="card chat-list"><div class="chat-search">⌕ <input placeholder="Search chats"></div>
+          <div class="chat-row selected"><div class="avatar">M</div><div><b>Mia</b><p>yo u on Klyro?</p></div><small>2m</small></div>
+          <div class="chat-row"><div class="avatar">J</div><div><b>Jayden</b><p>run snake 😭</p></div><small>8m</small></div>
+          <div class="chat-row"><div class="avatar">A</div><div><b>Alex</b><p>look at this game</p></div><small>1h</small></div>
+        </div>
+        <div class="card conversation"><div class="conversation-head"><div class="avatar">M</div><div><b>Mia</b><small>online</small></div></div><div class="messages" id="messages"><div class="msg them">yo u on Klyro?</div><div class="msg me">yeah this shi clean</div><div class="msg them">run a game 😭</div></div><form id="chatForm"><input id="chatInput" placeholder="Message Mia..."><button>Send</button></form></div>
+      </div>
+    </section>
+
+    <section id="ai" class="page">
+      <div class="ai-wrap card"><div class="ai-head"><div class="ai-icon">✦</div><div><h1>Klyro AI</h1><p>Ask anything or just talk</p></div></div><div class="ai-messages" id="aiMessages"><div class="ai-msg"><b>Klyro AI</b><p>yo 👋 what u tryna do?</p></div></div><form id="aiForm" class="ai-form"><input id="aiInput" placeholder="Ask Klyro AI..."><button class="primary">Send</button></form></div>
+    </section>
+
+    <section id="friends" class="page">
+      <div class="page-head"><div><p class="eyebrow">SOCIAL</p><h1>Friends</h1></div><button class="primary">+ Add friend</button></div>
+      <div class="friend-grid">
+        <div class="card friend"><div class="avatar big">J</div><h3>Jayden</h3><p class="online">● online</p><span>Playing Snake</span><button>Message</button></div>
+        <div class="card friend"><div class="avatar big">M</div><h3>Mia</h3><p class="online">● online</p><span>In General</span><button>Message</button></div>
+        <div class="card friend"><div class="avatar big">A</div><h3>Alex</h3><p class="online">● online</p><span>Playing 2048</span><button>Message</button></div>
+        <div class="card friend"><div class="avatar big">C</div><h3>Chris</h3><p>○ offline</p><span>Last seen 2h ago</span><button>Message</button></div>
+      </div>
+    </section>
+
+    <section id="settings" class="page">
+      <div class="page-head"><div><p class="eyebrow">PREFERENCES</p><h1>Settings</h1></div></div>
+      <div class="settings card">
+        <div class="setting"><div><h3>Accent color</h3><p>Change Klyro's glow, buttons and outlines</p></div><div class="swatches" id="swatches"><button data-color="#4f8cff"></button><button data-color="#9b5cff"></button><button data-color="#ff4fa3"></button><button data-color="#ff4f5e"></button><button data-color="#ff8a3d"></button><button data-color="#ffd34d"></button><button data-color="#39d98a"></button></div></div>
+        <div class="setting"><div><h3>Space background</h3><p>Show the galaxy backdrop</p></div><input type="checkbox" id="spaceToggle" checked></div>
+        <div class="setting"><div><h3>Stars</h3><p>Show distant stars</p></div><input type="checkbox" id="starsToggle" checked></div>
+        <div class="setting"><div><h3>Planet visibility</h3><p>Control distant planet artwork</p></div><input type="range" min="0" max="100" value="65" id="planetOpacity"></div>
+      </div>
+    </section>
+
+    <section id="admin" class="page">
+      <div class="page-head"><div><p class="eyebrow">OWNER TOOLS</p><h1>Moderation</h1></div><span class="admin-badge">ADMIN ONLY</span></div>
+      <div class="admin-grid">
+        <div class="card stat"><span>Reports</span><b>7</b><small>needs review</small></div><div class="card stat"><span>Muted</span><b>3</b><small>active</small></div><div class="card stat"><span>Banned</span><b>1</b><small>active</small></div>
+      </div>
+      <div class="card panel"><div class="panel-head"><h2>Recent reports</h2></div>
+        <div class="report"><div><b>user_482</b><p>Possible filter bypass in chat</p></div><button class="warn">Review</button><button>Mute</button><button class="danger">Ban</button></div>
+        <div class="report"><div><b>nightowl</b><p>Spam reports from 4 users</p></div><button class="warn">Review</button><button>Mute</button><button class="danger">Ban</button></div>
       </div>
     </section>
   </main>
 
-  <div id="gameModal" class="modal hidden">
-    <div class="modal-card">
-      <div class="modal-head">
-        <div>
-          <p class="eyebrow" id="modalCategory"></p>
-          <h2 id="modalTitle"></h2>
-        </div>
-        <button id="closeModal" class="close-btn" aria-label="Close">×</button>
-      </div>
-      <div id="gameMount" class="game-mount"></div>
-    </div>
-  </div>
-
+  <div id="gameModal" class="modal hidden"><div class="modal-card"><div class="modal-head"><div><p class="eyebrow" id="modalCategory"></p><h2 id="modalTitle"></h2></div><button id="closeModal" class="close-btn" aria-label="Close">×</button></div><div id="gameMount" class="game-mount"></div></div></div>
   <script src="script.js"></script>
 </body>
 </html>
