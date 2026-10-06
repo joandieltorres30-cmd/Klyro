@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Klyro Games</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="space-bg" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#" data-page="games">
+      <span class="brand-mark"><i></i><i></i><i></i><i></i></span>
+      <span>Klyro</span>
+    </a>
+    <nav>
+      <button class="nav-btn active" data-page="games">Games</button>
+      <button class="nav-btn" data-page="chats">Chats</button>
+      <button class="nav-btn" data-page="ai">AI</button>
+      <button class="nav-btn" data-page="friends">Friends</button>
+      <button class="nav-btn" data-page="settings">Settings</button>
+    </nav>
+    <button class="profile-dot" aria-label="Profile"></button>
+  </header>
+
+  <main>
+    <section id="gamesPage" class="page active">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">KLYRO ARCADE</p>
+          <h1>Play something.</h1>
+          <p class="hero-copy">Quick games, no downloads, straight from your browser.</p>
+        </div>
+        <div class="hero-orb"><span></span></div>
+      </div>
+
+      <div class="search-wrap">
+        <span class="search-icon"></span>
+        <input id="gameSearch" type="search" placeholder="Search games here..." autocomplete="off">
+      </div>
+
+      <div id="categories" class="pills"></div>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">TRENDING NOW</p>
+            <h2>Most Popular</h2>
+          </div>
+          <div class="scroll-controls">
+            <button id="popPrev" aria-label="Previous">‹</button>
+            <button id="popNext" aria-label="Next">›</button>
+          </div>
+        </div>
+        <div id="popularGrid" class="popular-grid"></div>
+      </section>
+
+      <section class="section all-section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">THE LIBRARY</p>
+            <h2>All Games</h2>
+          </div>
+          <span id="gameCount" class="count"></span>
+        </div>
+        <div id="gameGrid" class="game-grid"></div>
+      </section>
+    </section>
+
+    <section id="simplePage" class="page">
+      <div class="empty-page">
+        <p class="eyebrow" id="simpleEyebrow">KLYRO</p>
+        <h1 id="simpleTitle">Coming up</h1>
+        <p id="simpleText">This page is ready for the next backend build.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="gameModal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow" id="modalCategory"></p>
+          <h2 id="modalTitle"></h2>
+        </div>
+        <button id="closeModal" class="close-btn" aria-label="Close">×</button>
+      </div>
+      <div id="gameMount" class="game-mount"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
